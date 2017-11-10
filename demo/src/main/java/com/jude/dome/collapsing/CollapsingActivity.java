@@ -20,7 +20,9 @@ import com.jude.dome.entites.Ad;
 import com.jude.dome.loadmore.PersonAdapter;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
+import com.jude.easyrecyclerview.decoration.DividerDecoration;
 import com.jude.rollviewpager.RollPagerView;
+import com.jude.rollviewpager.Util;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
 
@@ -41,16 +43,24 @@ public class CollapsingActivity extends AppCompatActivity {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         recyclerView = (EasyRecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY, Util.dip2px(this,0.5f), Util.dip2px(this,72),0);
+        itemDecoration.setDrawLastItem(false);
+        recyclerView.addItemDecoration(itemDecoration);
         recyclerView.setAdapter(adapter = new PersonAdapter(this));
-        adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnLoadMoreListener() {
+        adapter.setMore(R.layout.view_more, new RecyclerArrayAdapter.OnMoreListener() {
             @Override
-            public void onLoadMore() {
+            public void onMoreShow() {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         adapter.addAll(DataProvider.getPersonList(0));
                     }
                 }, 1000);
+            }
+
+            @Override
+            public void onMoreClick() {
+
             }
         });
         adapter.addAll(DataProvider.getPersonList(0));

@@ -1,8 +1,8 @@
 package com.jude.dome.multistyle;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.jude.dome.DataProvider;
@@ -14,7 +14,7 @@ import com.jude.rollviewpager.Util;
 /**
  * Created by Mr.Jude on 2016/1/6.
  */
-public class MultiStyleActivity extends AppCompatActivity {
+public class MultiStyleActivity extends Activity {
     private EasyRecyclerView recyclerView;
     private PersonWithAdAdapter adapter;
     @Override

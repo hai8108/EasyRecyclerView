@@ -1,11 +1,13 @@
 package com.jude.dome.loadmore;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.jude.dome.DataProvider;
@@ -25,7 +28,7 @@ import com.jude.easyrecyclerview.decoration.DividerDecoration;
 import com.jude.rollviewpager.Util;
 
 
-public class RefreshAndMoreActivity extends ActionBarActivity implements RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener{
+public class RefreshAndMoreActivity extends Activity implements RecyclerArrayAdapter.OnLoadMoreListener, SwipeRefreshLayout.OnRefreshListener{
     private EasyRecyclerView recyclerView;
     private FloatingActionButton top;
     private RecyclerArrayAdapter adapter;
@@ -45,7 +48,6 @@ public class RefreshAndMoreActivity extends ActionBarActivity implements Recycle
         DividerDecoration itemDecoration = new DividerDecoration(Color.GRAY,Util.dip2px(this,0.5f), Util.dip2px(this,72),0);
         itemDecoration.setDrawLastItem(false);
         recyclerView.addItemDecoration(itemDecoration);
-
 
         recyclerView.setAdapterWithProgress(adapter = new RecyclerArrayAdapter(this) {
             @Override
@@ -70,6 +72,12 @@ public class RefreshAndMoreActivity extends ActionBarActivity implements Recycle
             public boolean onItemLongClick(int position) {
                 adapter.remove(position);
                 return true;
+            }
+        });
+        adapter.setOnItemClickListener(new RecyclerArrayAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Toast.makeText(RefreshAndMoreActivity.this,"position="+position, Toast.LENGTH_LONG).show();
             }
         });
         adapter.setError(R.layout.view_error, new RecyclerArrayAdapter.OnErrorListener() {

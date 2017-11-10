@@ -70,6 +70,7 @@ public class DataProvider {
     };
     public static ArrayList<Picture> getPictures(int page){
         ArrayList<Picture> arrayList = new ArrayList<>();
+        if (page == 4)return arrayList;
         for (int i = 0; i < VIRTUAL_PICTURE.length; i++) {
             arrayList.add(VIRTUAL_PICTURE[i]);
         }

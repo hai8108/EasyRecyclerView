@@ -116,6 +116,7 @@ public class EasyRecyclerView extends FrameLayout {
      *
      * @param left
      * @param top
+     *
      * @param right
      * @param bottom
      */

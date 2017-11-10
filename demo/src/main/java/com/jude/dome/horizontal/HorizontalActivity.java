@@ -1,10 +1,10 @@
 package com.jude.dome.horizontal;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.jude.dome.DataProvider;
@@ -18,7 +18,7 @@ import com.jude.easyrecyclerview.decoration.SpaceDecoration;
  * Created by zhuchenxi on 16/9/19.
  */
 
-public class HorizontalActivity extends AppCompatActivity {
+public class HorizontalActivity extends Activity {
     private EasyRecyclerView recyclerView;
     private NarrowImageAdapter adapter;
     @Override

@@ -18,8 +18,9 @@ import java.lang.reflect.Field;
  * 推荐子类继承第二个构造函数。并将子类的构造函数设为一个ViewGroup parent。
  * 然后这个ViewHolder就完全独立。adapter在new的时候只需将parentView传进来。View的生成与管理由ViewHolder执行。
  * 实现setData来实现UI修改。Adapter会在onCreateViewHolder里自动调用。
- *
+ * <p>
  * 在一些特殊情况下，只能在setData里设置监听。
+ *
  * @param <M>
  */
 abstract public class BaseViewHolder<M> extends RecyclerView.ViewHolder {
@@ -38,13 +39,13 @@ abstract public class BaseViewHolder<M> extends RecyclerView.ViewHolder {
         return (T) itemView.findViewById(id);
     }
 
-    protected Context getContext(){
+    protected Context getContext() {
         return itemView.getContext();
     }
 
-    protected int getDataPosition(){
+    protected int getDataPosition() {
         RecyclerView.Adapter adapter = getOwnerAdapter();
-        if (adapter!=null && adapter instanceof RecyclerArrayAdapter){
+        if (adapter != null && adapter instanceof RecyclerArrayAdapter) {
             return getAdapterPosition() - ((RecyclerArrayAdapter) adapter).getHeaderCount();
         }
         return getAdapterPosition();
@@ -52,13 +53,13 @@ abstract public class BaseViewHolder<M> extends RecyclerView.ViewHolder {
 
 
     @Nullable
-    protected <T extends RecyclerView.Adapter> T getOwnerAdapter(){
+    protected <T extends RecyclerView.Adapter> T getOwnerAdapter() {
         RecyclerView recyclerView = getOwnerRecyclerView();
-        return recyclerView == null?null: (T) recyclerView.getAdapter();
+        return recyclerView == null ? null : (T) recyclerView.getAdapter();
     }
 
     @Nullable
-    protected RecyclerView getOwnerRecyclerView(){
+    protected RecyclerView getOwnerRecyclerView() {
         try {
             Field field = RecyclerView.ViewHolder.class.getDeclaredField("mOwnerRecyclerView");
             field.setAccessible(true);

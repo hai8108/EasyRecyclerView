@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 23
+    buildToolsVersion '21.1.2'
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 24
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    provided 'com.android.support:recyclerview-v7:24.2.0'
+    provided 'com.android.support:recyclerview-v7:23.0.1'
 }
 ext {
     bintrayRepo = 'maven'
